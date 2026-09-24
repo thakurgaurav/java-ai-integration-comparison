@@ -3,6 +3,7 @@ package com.gauravthakur.ai.comparison.service;
 import com.gauravthakur.ai.comparison.adapter.AiChatAdapter;
 import com.gauravthakur.ai.comparison.dto.ChatRequest;
 import com.gauravthakur.ai.comparison.dto.ComparisonResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Service
 public class ComparisonService {
 
@@ -28,6 +30,7 @@ public class ComparisonService {
     }
 
     public Map<String, ComparisonResult> compare(String prompt) {
+        log.info("Starting comparison for prompt: {}", prompt);
         List<CompletableFuture<AdapterResult>> futures = adapters.stream()
                 .map(adapter -> CompletableFuture.supplyAsync(
                         () -> execute(adapter, prompt),
@@ -46,26 +49,31 @@ public class ComparisonService {
             );
         }
 
+        log.info("Finished comparison for prompt: {}", prompt);
         return results;
     }
 
     public ComparisonResult chat(ChatRequest request) {
+        log.info("Starting chat with request: {}", request);
         AiChatAdapter adapter = findAdapter(request);
 
-        return execute(adapter, request.prompt()).result();
+        ComparisonResult result = execute(adapter, request.prompt()).result();
+        log.info("Finished chat with result: {}", result);
+        return result;
     }
 
     private AdapterResult execute(
             AiChatAdapter adapter,
             String prompt
     ) {
+        log.info("Starting execution for adapter: {}", adapter);
         long startTime = System.nanoTime();
 
         try {
             String message = adapter.chat(prompt);
             long durationMs = elapsedMilliseconds(startTime);
 
-            return new AdapterResult(
+            AdapterResult adapterResult = new AdapterResult(
                     adapter.resultKey(),
                     ComparisonResult.success(
                             adapter.integration(),
@@ -75,10 +83,12 @@ public class ComparisonService {
                             durationMs
                     )
             );
+            log.info("Finished execution for adapter: {} with result: {}", adapter, adapterResult);
+            return adapterResult;
         } catch (Exception exception) {
             long durationMs = elapsedMilliseconds(startTime);
 
-            return new AdapterResult(
+            AdapterResult adapterResult = new AdapterResult(
                     adapter.resultKey(),
                     ComparisonResult.failure(
                             adapter.integration(),
@@ -88,6 +98,8 @@ public class ComparisonService {
                             exceptionMessage(exception)
                     )
             );
+            log.info("Finished execution for adapter: {} with failure: {}", adapter, adapterResult);
+            return adapterResult;
         }
     }
 
@@ -127,8 +139,5 @@ public class ComparisonService {
             String key,
             ComparisonResult result
     ) {}
-
-
-
 
 }
