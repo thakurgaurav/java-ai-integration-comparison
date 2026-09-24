@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: java-ai-integration-comparison
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:not-configured}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-6-luna}
+
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_MODEL:qwen3:8b}
+
+server:
+  port: 8080
+
+comparison:
+  openai:
+    api-key: ${OPENAI_API_KEY:not-configured}
+    base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+    model: ${OPENAI_MODEL:gpt-6-luna}
+
+  ollama:
+    api-key: ${OLLAMA_API_KEY:ollama}
+    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+    openai-compatible-base-url: ${OLLAMA_OPENAI_BASE_URL:http://localhost:11434/v1}
+    model: ${OLLAMA_MODEL:qwen3:8b}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
