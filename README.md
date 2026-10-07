@@ -2,6 +2,18 @@
 
 A Spring Boot application demonstrating how Java developers can connect to hosted and local AI models using three different integration approaches:
 
+## Web UI
+
+The project includes an AI Pulse Engineering web UI for comparing all six
+routes or running one selected integration. The comparison view is the default
+screen, with a dropdown for switching to the focused single-integration view.
+
+![UI Home page](docs/images/home.png)
+
+![AI comparison UI](docs/images/ui-comparison.png)
+
+![Single integration UI](docs/images/ui-single-integration.png)
+
 - Official OpenAI Java SDK
 - Spring AI
 - LangChain4j
