@@ -29,7 +29,8 @@ The project provides APIs for comparing all six combinations or invoking one sel
 
 ```mermaid
 flowchart TD
-    Controller["REST API"] --> Service["AI Comparison Service"]
+    WebUI["AI Pulse Web UI"] --> Controller["REST API"]
+    Controller --> Service["AI Comparison Service"]
 
     Service --> SDK["OpenAI Java SDK"]
     Service --> SpringAI["Spring AI"]
