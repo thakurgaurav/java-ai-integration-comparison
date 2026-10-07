@@ -181,7 +181,11 @@ The application starts at:
 http://localhost:8080
 ```
 
-Opening the root URL may return `404 Not Found`. This is expected because the project exposes REST APIs rather than a web page at `/`.
+Open `http://localhost:8080` in a browser to use the comparison UI. It supports
+running all six integration/provider combinations or selecting one route for a
+focused response. The REST endpoints remain available at `/api/v1/ai/compare`
+and `/api/v1/ai/chat`.
+
 
 ## API documentation
 

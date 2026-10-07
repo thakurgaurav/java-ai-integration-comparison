@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java AI Integration Comparison · AI Pulse Engineering</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="shell">
+    <header class="hero">
+        <div>
+            <div class="brand-line"><span class="brand-mark">AI</span><span>AI Pulse Engineering <small>JAVA AI LAB</small></span></div>
+            <p class="eyebrow">AI PULSE ENGINEERING</p>
+            <h1>Java AI Integration <span>Comparison</span></h1>
+            <p class="tagline">Curiosity → Knowledge → Impact <span>by Gaurav Thakur</span></p>
+            <p class="subtitle">Run the same prompt through every configured integration, or focus on one route at a time.</p>
+        </div>
+        <div class="status-pill"><span class="status-dot"></span> API ready</div>
+    </header>
+
+    <section class="api-selector panel">
+        <div>
+            <p class="eyebrow">API SELECTION</p>
+            <h2>Choose an API</h2>
+        </div>
+        <div class="api-select-wrap">
+            <label for="api-selection">Open API page</label>
+            <select id="api-selection">
+                <option value="compare" selected>Compare all routes · 6 responses</option>
+                <option value="chat">Run one integration · 1 response</option>
+            </select>
+        </div>
+    </section>
+
+    <section class="prompt-panel panel">
+        <label for="prompt">Prompt</label>
+        <textarea id="prompt" maxlength="10000" placeholder="Ask something to compare across the six routes...">Explain the difference between an interface and an abstract class in Java.</textarea>
+        <div class="prompt-footer">
+            <span id="character-count">0 / 10,000</span>
+            <button id="clear-prompt" class="text-button" type="button">Clear</button>
+        </div>
+    </section>
+
+    <section id="compare-page" class="compare-section api-page">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">01 / side-by-side</p>
+                <h2>Compare all six routes</h2>
+            </div>
+            <button id="compare-button" class="primary-button" type="button"><span>Run comparison</span><span class="button-arrow">↗</span></button>
+        </div>
+        <div id="compare-summary" class="run-summary hidden"></div>
+        <div id="comparison-results" class="results-grid empty-state">
+            <div class="empty-icon">✦</div>
+            <p>Your six responses will appear here.</p>
+            <small>OpenAI and Ollama × SDK, Spring AI and LangChain4j</small>
+        </div>
+    </section>
+
+    <section id="chat-page" class="single-section api-page hidden-page">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">02 / focused request</p>
+                <h2>Run one integration</h2>
+            </div>
+        </div>
+        <div class="single-controls panel">
+            <div class="field-group"><label for="integration">Integration</label><select id="integration">
+                <option value="openai-sdk">Official OpenAI SDK</option>
+                <option value="spring-ai">Spring AI</option>
+                <option value="langchain4j">LangChain4j</option>
+            </select></div>
+            <div class="field-group"><label for="provider">Provider</label><select id="provider">
+                <option value="openai">OpenAI</option>
+                <option value="ollama">Ollama</option>
+            </select></div>
+            <button id="chat-button" class="secondary-button" type="button">Run selected route <span>↗</span></button>
+        </div>
+        <div id="single-result" class="single-result empty-state">
+            <div class="empty-icon">◎</div>
+            <p>Select an integration and provider, then run the prompt.</p>
+        </div>
+    </section>
+
+    <footer>AI Pulse Engineering <span>•</span> Curiosity → Knowledge → Impact <span>•</span> by Gaurav Thakur</footer>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
