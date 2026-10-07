@@ -181,10 +181,18 @@ The application starts at:
 http://localhost:8080
 ```
 
-Open `http://localhost:8080` in a browser to use the comparison UI. It supports
-running all six integration/provider combinations or selecting one route for a
-focused response. The REST endpoints remain available at `/api/v1/ai/compare`
-and `/api/v1/ai/chat`.
+Open `http://localhost:8080` in a browser to use the AI Pulse Engineering UI.
+The API selection dropdown opens one of two views (the comparison view is
+selected by default):
+
+- **Compare all routes** — sends one prompt to all six integration/provider
+  combinations and displays each response in its own card with integration,
+  provider, model, status, and duration.
+- **Run one integration** — lets you select an integration and provider, then
+  displays the focused response in the same page.
+
+The shared prompt is sent to the selected REST endpoint. The endpoints remain
+available directly at `/api/v1/ai/compare` and `/api/v1/ai/chat`.
 
 
 ## API documentation
@@ -447,6 +455,11 @@ Example:
 - Review OpenAI usage and spending limits.
 - Do not expose this demonstration publicly without authentication and rate limiting.
 - Keep `.env` and local secret files excluded through `.gitignore`.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0. See
+[LICENSE](LICENSE) for the full license text.
 
 ## Current scope
 
