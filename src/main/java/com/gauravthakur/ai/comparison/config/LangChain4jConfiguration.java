@@ -33,11 +33,13 @@ public class LangChain4jConfiguration {
     @Bean("langChain4jOllamaChatModel")
     public ChatModel langChain4jOllamaChatModel(
             @Value("${comparison.ollama.base-url}") String baseUrl,
-            @Value("${comparison.ollama.model}") String model
+            @Value("${comparison.ollama.model}") String model,
+            @Value("${comparison.ollama.think:false}") boolean think
     ) {
         return OllamaChatModel.builder()
                 .baseUrl(baseUrl)
                 .modelName(model)
+                .think(think)
                 .timeout(Duration.ofMinutes(5))
                 .build();
     }

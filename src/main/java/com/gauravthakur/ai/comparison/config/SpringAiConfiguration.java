@@ -5,6 +5,7 @@ import com.gauravthakur.ai.comparison.adapter.springai.SpringAiChatAdapter;
 import com.gauravthakur.ai.comparison.model.ProviderType;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.ollama.OllamaChatModel;
+import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,9 +24,14 @@ public class SpringAiConfiguration {
 
     @Bean("springAiOllamaChatClient")
     public ChatClient springAiOllamaChatClient(
-            OllamaChatModel ollamaChatModel
+            OllamaChatModel ollamaChatModel,
+            @Value("${comparison.ollama.think:false}") boolean think
     ) {
-        return ChatClient.builder(ollamaChatModel).build();
+        return ChatClient.builder(ollamaChatModel)
+                .defaultOptions(think
+                        ? OllamaChatOptions.builder().enableThinking()
+                        : OllamaChatOptions.builder().disableThinking())
+                .build();
     }
 
     @Bean

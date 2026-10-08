@@ -46,6 +46,7 @@ public class OfficialSdkConfiguration {
                 client,
                 ProviderType.OPENAI,
                 model,
+                false,
                 10
         );
     }
@@ -53,12 +54,14 @@ public class OfficialSdkConfiguration {
     @Bean
     public AiChatAdapter officialSdkOllamaAdapter(
             @Qualifier("officialOllamaClient") OpenAIClient client,
-            @Value("${comparison.ollama.model}") String model
+            @Value("${comparison.ollama.model}") String model,
+            @Value("${comparison.ollama.think:false}") boolean think
     ) {
         return new OfficialSdkChatAdapter(
                 client,
                 ProviderType.OLLAMA,
                 model,
+                think,
                 20
         );
     }

@@ -29,6 +29,7 @@ comparison:
     base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
     openai-compatible-base-url: ${OLLAMA_OPENAI_BASE_URL:http://localhost:11434/v1}
     model: ${OLLAMA_MODEL:qwen3:8b}
+    think: ${OLLAMA_THINK:false}
 
 springdoc:
   api-docs:
